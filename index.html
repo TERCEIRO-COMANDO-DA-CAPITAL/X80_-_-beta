@@ -3,71 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentação Exemplo</title>
+    <title>Fluent v2 - Documentação Oficial</title>
     <style>
-        /* CSS Avançado Inspirado em Designs Modernos (como sites com temas escuros, gradientes e animações) */
+        /* CSS Avançado com Tema Dark AMOLED Neon, Glassmorphic e Acrylic - Inspirado e Melhorado do Fluxus */
         :root {
-            --primary-color: #0f0f0f; /* Fundo escuro */
-            --accent-color: #00ff88; /* Verde neon */
-            --text-color: #ffffff; /* Texto branco */
-            --secondary-color: #1a1a1a; /* Cinza escuro */
-            --gradient-bg: linear-gradient(135deg, #0f0f0f, #1f1f1f); /* Gradiente sutil */
-            --shadow-neon: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color); /* Efeito neon */
+            --bg-color: #000000; /* AMOLED Black */
+            --text-color: #ffffff; /* Branco puro */
+            --accent-blue: #00bfff; /* Neon Azul */
+            --accent-red: #ff1493; /* Neon Vermelho/Rosa */
+            --gradient-astral: linear-gradient(135deg, rgba(0, 191, 255, 0.2), rgba(255, 20, 147, 0.2)); /* Gradiente astral azul-vermelho */
+            --glass-bg: rgba(255, 255, 255, 0.05); /* Fundo glassmorphic/acrylic */
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+            --neon-shadow-blue: 0 0 15px var(--accent-blue), 0 0 30px var(--accent-blue);
+            --neon-shadow-red: 0 0 15px var(--accent-red), 0 0 30px var(--accent-red);
+            --neon-shadow-mixed: 0 0 10px var(--accent-blue), 0 0 20px var(--accent-red);
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Roboto', sans-serif; /* Tipografia moderna */
-            background: var(--gradient-bg);
+            font-family: 'Roboto', sans-serif;
+            background: var(--bg-color) url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Ccircle cx="10" cy="10" r="1" fill="%23fff" opacity="0.5"/%3E%3Ccircle cx="30" cy="50" r="0.5" fill="%23fff" opacity="0.3"/%3E%3Ccircle cx="70" cy="20" r="1.5" fill="%23fff" opacity="0.4"/%3E%3Ccircle cx="90" cy="80" r="0.8" fill="%23fff" opacity="0.6"/%3E%3C/svg%3E') repeat; /* Fundo estrelado sutil */
             color: var(--text-color);
             line-height: 1.6;
-            overflow-x: hidden; /* Evita scroll horizontal */
+            overflow-x: hidden;
+            position: relative;
         }
 
-        /* Header com animação */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-astral);
+            opacity: 0.5;
+            z-index: -1;
+            animation: astralGlow 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes astralGlow {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 0.6; transform: scale(1.05); }
+        }
+
+        /* Partículas neon para efeito astral - Mais partículas para beleza */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+            box-shadow: var(--neon-shadow-blue);
+        }
+
+        .particle:nth-child(even) { background: var(--accent-red); box-shadow: var(--neon-shadow-red); animation-duration: 20s; }
+        .particle:nth-child(3n) { animation-duration: 25s; }
+        .particle:nth-child(4n) { animation-duration: 18s; }
+        .particle:nth-child(5n) { background: var(--accent-blue); box-shadow: var(--neon-shadow-blue); animation-duration: 22s; }
+
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(10vw); opacity: 0.5; }
+        }
+
+        /* Header Glassmorphic - Inspirado no Fluxus com mais sofisticação */
         header {
-            background: rgba(0, 0, 0, 0.8);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: var(--glass-border);
             padding: 20px;
             text-align: center;
             position: sticky;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(10px); /* Efeito de vidro fosco (CSS avançado) */
-            box-shadow: var(--shadow-neon);
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+            box-shadow: var(--neon-shadow-mixed);
+            animation: fadeIn 1.5s ease-in-out;
         }
 
         header h1 {
             margin: 0;
-            font-size: 2.5em;
+            font-size: 3em;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            background: linear-gradient(to right, var(--accent-color), #00ffcc); /* Gradiente no texto */
+            letter-spacing: 3px;
+            background: linear-gradient(to right, var(--accent-blue), var(--accent-red));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        /* Navegação com flexbox */
         nav {
             display: flex;
             justify-content: center;
-            margin-top: 10px;
+            margin-top: 15px;
         }
 
         nav a {
             color: var(--text-color);
             text-decoration: none;
-            margin: 0 15px;
-            padding: 10px 20px;
+            margin: 0 20px;
+            padding: 12px 25px;
             border-radius: 50px;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             position: relative;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: var(--accent-blue);
+            box-shadow: var(--neon-shadow-blue);
         }
 
         nav a::after {
@@ -76,38 +135,35 @@
             bottom: 0;
             left: 50%;
             width: 0;
-            height: 2px;
-            background: var(--accent-color);
-            transition: all 0.3s ease;
+            height: 3px;
+            background: linear-gradient(to right, var(--accent-blue), var(--accent-red));
+            transition: all 0.4s ease;
             transform: translateX(-50%);
-        }
-
-        nav a:hover {
-            color: var(--accent-color);
-            box-shadow: var(--shadow-neon);
         }
 
         nav a:hover::after {
             width: 100%;
         }
 
-        /* Conteúdo principal com grid */
+        /* Main com Grid - Layout inspirado no Fluxus, mas com mais espaço e fluidez */
         main {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 20px;
+            max-width: 1300px;
+            margin: 50px auto;
+            padding: 30px;
             display: grid;
-            grid-template-columns: 1fr 3fr; /* Sidebar e conteúdo */
-            gap: 30px;
+            grid-template-columns: 1fr 4fr;
+            gap: 40px;
         }
 
         aside {
-            background: var(--secondary-color);
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: var(--glass-border);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: var(--neon-shadow-mixed);
             position: sticky;
-            top: 100px;
+            top: 120px;
             height: fit-content;
         }
 
@@ -119,59 +175,78 @@
         aside li a {
             color: var(--text-color);
             display: block;
-            padding: 10px;
-            transition: color 0.3s;
+            padding: 12px;
+            transition: color 0.4s, transform 0.4s;
         }
 
         aside li a:hover {
-            color: var(--accent-color);
+            color: var(--accent-red);
+            transform: translateX(10px);
         }
 
         section {
-            background: var(--secondary-color);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-            animation: slideIn 0.5s ease;
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-50px); }
-            to { opacity: 1; transform: translateX(0); }
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: var(--glass-border);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--neon-shadow-mixed);
+            animation: slideIn 1s ease;
         }
 
         section h2 {
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+            border-bottom: 3px solid transparent;
+            background: linear-gradient(to right, var(--accent-blue), var(--accent-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            font-size: 2em;
         }
 
-        /* Botões com hover avançado */
+        /* Botões Neon - Mais vibrantes que no Fluxus */
         .btn {
             display: inline-block;
-            padding: 12px 24px;
-            background: linear-gradient(135deg, var(--accent-color), #00ffcc);
-            color: #000;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-red));
+            color: var(--bg-color);
             text-decoration: none;
             border-radius: 50px;
             font-weight: bold;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.4s, box-shadow 0.4s;
+            box-shadow: var(--neon-shadow-mixed);
         }
 
         .btn:hover {
-            transform: scale(1.05);
-            box-shadow: var(--shadow-neon);
+            transform: scale(1.1);
+            box-shadow: 0 0 20px var(--accent-blue), 0 0 40px var(--accent-red);
         }
 
-        /* Footer */
+        /* Código Highlight - Com neon borders */
+        pre {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            overflow-x: auto;
+            box-shadow: var(--neon-shadow-blue);
+        }
+
+        code {
+            color: var(--accent-blue);
+        }
+
+        /* Footer - Glassmorphic */
         footer {
             text-align: center;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            margin-top: 40px;
+            padding: 25px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-top: var(--glass-border);
+            margin-top: 50px;
+            box-shadow: var(--neon-shadow-mixed);
         }
 
-        /* Responsividade com media queries */
+        /* Responsividade */
         @media (max-width: 768px) {
             main {
                 grid-template-columns: 1fr;
@@ -184,56 +259,136 @@
     </style>
 </head>
 <body>
+    <div class="particles">
+        <div class="particle" style="width: 5px; height: 5px; left: 10%; top: 100%; animation-delay: 0s;"></div>
+        <div class="particle" style="width: 3px; height: 3px; left: 20%; top: 100%; animation-delay: 2s;"></div>
+        <div class="particle" style="width: 4px; height: 4px; left: 50%; top: 100%; animation-delay: 4s;"></div>
+        <div class="particle" style="width: 6px; height: 6px; left: 80%; top: 100%; animation-delay: 6s;"></div>
+        <div class="particle" style="width: 5px; height: 5px; left: 40%; top: 100%; animation-delay: 1s;"></div>
+        <div class="particle" style="width: 4px; height: 4px; left: 60%; top: 100%; animation-delay: 3s;"></div>
+        <div class="particle" style="width: 3px; height: 3px; left: 90%; top: 100%; animation-delay: 5s;"></div>
+        <div class="particle" style="width: 5px; height: 5px; left: 15%; top: 100%; animation-delay: 7s;"></div>
+    </div>
+
     <header>
-        <h1>Documentação do Projeto</h1>
+        <h1>Fluent v2 - Documentação Oficial</h1>
         <nav>
             <a href="#intro">Introdução</a>
             <a href="#instalacao">Instalação</a>
             <a href="#uso">Uso</a>
+            <a href="#features">Features</a>
+            <a href="#themes">Temas</a>
+            <a href="#elements">Elementos</a>
             <a href="#contato">Contato</a>
         </nav>
     </header>
 
     <main>
         <aside>
-            <h3>Menu</h3>
+            <h3>Menu Rápido</h3>
             <ul>
                 <li><a href="#intro">Introdução</a></li>
                 <li><a href="#instalacao">Instalação</a></li>
                 <li><a href="#uso">Uso</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#themes">Temas</a></li>
+                <li><a href="#elements">Elementos</a></li>
                 <li><a href="#contato">Contato</a></li>
             </ul>
         </aside>
 
         <section id="intro">
             <h2>Introdução</h2>
-            <p>Aqui você pode colar o conteúdo da sua documentação. Este é um template com CSS avançado, incluindo gradientes, animações, sombras neon e layout responsivo usando grid e flexbox.</p>
-            <p>Exemplo: Este site foi inspirado em designs modernos como o do exemplo fornecido, com tema escuro e efeitos visuais atraentes.</p>
+            <p>Bem-vindo à documentação oficial do Fluent v2, uma suíte de interface avançada para Roblox projetada para desenvolvedores profissionais. O Fluent v2 oferece uma biblioteca de UI moderna com temas personalizáveis, suporte a acrylic e glassmorphism, animações suaves e componentes intuitivos.</p>
+            <p>Autor: dawid (modificado por Grok para tema AMOLED, acentos vermelhos, scrollbars vermelhas e botão de minimizar). Licença: MIT. GitHub: <a href="https://github.com/dawid-scripts/Fluent" style="color: var(--accent-blue);">https://github.com/dawid-scripts/Fluent</a>.</p>
+            <p>Versão: 2.0.0. Esta biblioteca é otimizada para performance e compatibilidade com as versões mais recentes do Roblox.</p>
+            <a href="#instalacao" class="btn">Comece Agora</a>
         </section>
 
         <section id="instalacao">
             <h2>Instalação</h2>
-            <p>Coloque aqui as instruções de instalação.</p>
-            <a href="#" class="btn">Baixar Agora</a>
+            <p>Para instalar o Fluent v2, você precisa de um executor de scripts compatível com Roblox, como Fluxus, Synapse ou similar. Siga os passos abaixo:</p>
+            <ol>
+                <li>Instale um executor de confiança no seu dispositivo.</li>
+                <li>Abra o Roblox e injete o executor.</li>
+                <li>Execute o loadstring fornecido abaixo, substituindo a URL pelo link do seu script hospedado.</li>
+            </ol>
+            <pre><code>loadstring(game:HttpGet("https://sua-url-do-script-aqui.com/fluentv2.lua"))()</code></pre>
+            <p>Após a execução, a biblioteca será carregada automaticamente. Certifique-se de que a URL aponta para o arquivo .lua hospedado de forma segura (ex: GitHub Raw ou Pastebin).</p>
+            <a href="#" class="btn">Baixar Executor Recomendado</a>
         </section>
 
         <section id="uso">
             <h2>Uso</h2>
-            <p>Descreva como usar o projeto.</p>
+            <p>O Fluent v2 é fácil de usar. Aqui vai um guia básico para criar uma janela e adicionar elementos:</p>
+            <ul>
+                <li><strong>Criar Janela:</strong> Use Fluent.CreateWindow({Title = "Minha UI", Size = UDim2.fromOffset(580, 460)})</li>
+                <li><strong>Adicionar Tab:</strong> window:AddTab({Title = "Configurações", Icon = "lucide-settings"})</li>
+                <li><strong>Adicionar Seção:</strong> tab:AddSection("Opções Gerais")</li>
+                <li><strong>Adicionar Elementos:</strong> section.Container:Button({Title = "Ativar", Callback = function() print("Ativado") end})</li>
+            </ul>
+            <p>Exemplo de loadstring para versão personalizada (substitua a URL):</p>
+            <pre><code>loadstring(game:HttpGet("https://sua-url-personalizada-aqui.com/fluentv2-custom.lua"))()</code></pre>
+            <p>Para notificações: Fluent:Notify({Title = "Sucesso", Content = "UI Carregada", Duration = 5})</p>
+            <p>Para diálogos: window:Dialog({Title = "Confirmação", Content = "Continuar?", Buttons = {{Title = "Sim", Callback = function() end}}})</p>
+        </section>
+
+        <section id="features">
+            <h2>Features</h2>
+            <p>O Fluent v2 inclui uma ampla gama de features avançadas:</p>
+            <ul>
+                <li><strong>Temas Personalizáveis:</strong> Dark, Darker, Light, Aqua, Amethyst, Rose - com acentos vermelhos no Dark.</li>
+                <li><strong>Acrylic e Glassmorphism:</strong> Suporte a efeitos de blur e transparência para um visual moderno.</li>
+                <li><strong>Animações Suaves:</strong> Usando Flipper para springs, lineares e instantâneas.</li>
+                <li><strong>Notificações:</strong> Sistema de notificações com duração e animações.</li>
+                <li><strong>Botão de Minimizar:</strong> Adicionado para alternar visibilidade da UI.</li>
+                <li><strong>Scrollbars Vermelhas:</strong> Customizadas para o tema AMOLED.</li>
+                <li><strong>Ícones Lucide:</strong> Biblioteca de ícones integrada.</li>
+                <li><strong>Componentes:</strong> Botões, Toggles, Sliders, Dropdowns, Colorpickers, Keybinds, Inputs, etc.</li>
+                <li><strong>Suporte a Keybinds:</strong> Para minimizar a UI (padrão: LeftControl).</li>
+            </ul>
+            <p>Para mais detalhes, consulte as seções de Temas e Elementos abaixo.</p>
+        </section>
+
+        <section id="themes">
+            <h2>Temas</h2>
+            <p>O Fluent v2 suporta múltiplos temas. Use Fluent:SetTheme("NomeDoTema") para alternar.</p>
+            <ul>
+                <li><strong>Dark (Padrão):</strong> AMOLED black com acentos vermelhos claros.</li>
+                <li><strong>Darker:</strong> Tons mais escuros para ambientes low-light.</li>
+                <li><strong>Light:</strong> Tema claro para visibilidade diurna.</li>
+                <li><strong>Aqua:</strong> Tons de azul para um visual fresco.</li>
+                <li><strong>Amethyst:</strong> Tons roxos elegantes.</li>
+                <li><strong>Rose:</strong> Tons rosados vibrantes.</li>
+            </ul>
+            <p>Exemplo: Fluent:SetTheme("Dark")</p>
+        </section>
+
+        <section id="elements">
+            <h2>Elementos</h2>
+            <p>Adicione elementos às seções para criar interfaces ricas:</p>
+            <ul>
+                <li><strong>Button:</strong> Adiciona um botão clicável. Ex: section.Container:Button({Title = "Clique", Callback = function() end})</li>
+                <li><strong>Paragraph:</strong> Texto descritivo. Ex: section.Container:Paragraph({Content = "Descrição aqui"})</li>
+                <li><strong>Toggle:</strong> Alternador on/off. Ex: section.Container:Toggle("ID", {Title = "Ativar Cheat", Default = false, Callback = function(value) end})</li>
+                <li><strong>Slider:</strong> Controle deslizante. Ex: section.Container:Slider("ID", {Title = "Velocidade", Default = 50, Min = 0, Max = 100, Callback = function(value) end})</li>
+                <li><strong>Dropdown:</strong> Seleção de opções. Ex: section.Container:Dropdown("ID", {Title = "Escolha", Default = "Opção 1", Options = {"Opção 1", "Opção 2"}, Callback = function(value) end})</li>
+                <li><strong>Colorpicker:</strong> Seletor de cor. Ex: section.Container:Colorpicker("ID", {Title = "Cor", Default = Color3.fromRGB(255, 100, 100), Callback = function(color) end})</li>
+                <li><strong>Keybind:</strong> Atribuição de tecla. Ex: section.Container:Keybind("ID", {Title = "Bind", Default = Enum.KeyCode.E, Callback = function(key) end})</li>
+                <li><strong>Input:</strong> Campo de texto. Ex: section.Container:Input("ID", {Title = "Nome", Default = "", Callback = function(text) end})</li>
+            </ul>
+            <p>Todos os elementos suportam temas e transparências para um visual coeso.</p>
         </section>
 
         <section id="contato">
             <h2>Contato</h2>
-            <p>Informações de contato.</p>
+            <p>Para suporte ou contribuições, visite o GitHub: <a href="https://github.com/dawid-scripts/Fluent" style="color: var(--accent-red);">Repositório Oficial</a>.</p>
+            <p>Questões? Envie uma issue no repositório ou contate o autor dawid.</p>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 Seu Projeto. Todos os direitos reservados.</p>
+        <p>&copy; 2025 Fluent v2. Todos os direitos reservados. Modificado por Grok.</p>
     </footer>
-
-    <!-- Script carregado de path personalizado (exemplo: /load/meuhub.js) -->
-    <!-- Para rodar, crie um arquivo meuhub.js na pasta load do seu projeto Vercel -->
-    <script src="/load/meuhub.js"></script>
 </body>
-  </html>
+    </html>
