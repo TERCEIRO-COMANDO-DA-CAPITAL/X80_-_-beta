@@ -4,61 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fluent v2 - Documentação Oficial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* CSS Avançado Profissional Melhorado: Tema Dark AMOLED Neon Vermelho Suave, Glassmorphic e Acrylic - Otimizado para Performance e Visualização */
+        /* Customizações para Tailwind com tema vermelho neon e glassmorphism */
         :root {
-            --bg-color: #000000; /* AMOLED Black */
-            --text-color: #ffffff; /* Branco puro - Corrigido para todos os textos */
-            --accent-primary: #ff0000; /* Neon Vermelho Primário */
-            --accent-secondary: #ff1493; /* Neon Vermelho Secundário (Rosa-Vermelho) */
-            --gradient-astral: linear-gradient(135deg, rgba(255, 0, 0, 0.1), rgba(255, 20, 147, 0.1)); /* Gradiente astral vermelho suave, opacidade reduzida para não poluir */
-            --glass-bg: rgba(255, 255, 255, 0.05); /* Fundo glassmorphic/acrylic */
-            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
-            --neon-shadow-primary: 0 0 10px var(--accent-primary), 0 0 20px var(--accent-primary); /* Sombras neon otimizadas */
-            --neon-shadow-secondary: 0 0 10px var(--accent-secondary), 0 0 20px var(--accent-secondary);
-            --neon-shadow-mixed: 0 0 8px var(--accent-primary), 0 0 16px var(--accent-secondary);
-        }
-
-        html {
-            scroll-behavior: smooth;
+            --primary: #ffffff;
+            --accent: #ff0000; /* Vermelho neon primário */
+            --accent-secondary: #ff1493; /* Rosa-vermelho neon */
+            --bg-amoled: #000000;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Roboto', sans-serif;
-            background: var(--bg-color) url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Ccircle cx="10" cy="10" r="1" fill="%23fff" opacity="0.5"/%3E%3Ccircle cx="30" cy="50" r="0.5" fill="%23fff" opacity="0.3"/%3E%3Ccircle cx="70" cy="20" r="1.5" fill="%23fff" opacity="0.4"/%3E%3Ccircle cx="90" cy="80" r="0.8" fill="%23fff" opacity="0.6"/%3E%3C/svg%3E') repeat; /* Fundo estrelado sutil - Mantido leve */
-            color: var(--text-color);
-            line-height: 1.8; /* Melhor espaçamento para leitura */
-            overflow-x: hidden;
-            position: relative;
+            background: var(--bg-amoled) url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"%3E%3Ccircle cx="5" cy="5" r="0.5" fill="%23fff" opacity="0.3"/%3E%3Ccircle cx="15" cy="25" r="0.3" fill="%23fff" opacity="0.2"/%3E%3Ccircle cx="35" cy="10" r="0.7" fill="%23fff" opacity="0.25"/%3E%3C/svg%3E') repeat;
+            background-size: 50px 50px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-astral);
-            opacity: 0.4; /* Opacidade reduzida para não poluir, realçando o fundo AMOLED */
-            z-index: -1;
-            animation: astralGlow 15s ease-in-out infinite alternate; /* Animação mais lenta para performance */
-        }
-
-        @keyframes astralGlow {
-            0% { opacity: 0.3; transform: scale(1); }
-            100% { opacity: 0.5; transform: scale(1.02); } /* Reduzido o scale para menos carga no GPU */
-        }
-
-        /* Partículas neon otimizadas: Reduzidas para 8 partículas, animações leves */
+        /* Partículas neon otimizadas */
         .particles {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             pointer-events: none;
             z-index: -1;
             overflow: hidden;
@@ -66,372 +34,197 @@
 
         .particle {
             position: absolute;
-            background: var(--accent-primary);
-            border-radius: 50%;
-            animation: float 20s infinite linear; /* Animação mais lenta para performance */
-            box-shadow: var(--neon-shadow-primary);
-            opacity: 0.6; /* Opacidade reduzida */
+            background: var(--accent);
+            border-radius: 9999px;
+            animation: float 20s ease-in-out infinite;
+            box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
+            opacity: 0.5;
         }
 
-        .particle:nth-child(even) { background: var(--accent-secondary); box-shadow: var(--neon-shadow-secondary); animation-duration: 25s; opacity: 0.5; }
-        .particle:nth-child(3n) { animation-duration: 30s; width: 6px; height: 6px; }
-        .particle:nth-child(4n) { animation-duration: 22s; opacity: 0.7; }
+        .particle:nth-child(even) {
+            background: var(--accent-secondary);
+            box-shadow: 0 0 10px var(--accent-secondary), 0 0 20px var(--accent-secondary);
+            animation-duration: 25s;
+            opacity: 0.4;
+        }
 
         @keyframes float {
-            0% { transform: translateY(0) translateX(0); opacity: 0.4; }
-            50% { opacity: 0.8; }
-            100% { transform: translateY(-100vh) translateX(5vw); opacity: 0.4; } /* Reduzido o translateX para menos movimento */
+            0%, 100% { transform: translateY(0); opacity: 0.4; }
+            50% { transform: translateY(-20vh); opacity: 0.8; }
         }
 
-        /* Header Glassmorphic - Fixo e otimizado */
-        header {
+        /* Glassmorphism para cards */
+        .glass-panel {
             background: var(--glass-bg);
-            backdrop-filter: blur(15px); /* Blur reduzido para performance */
-            border-bottom: var(--glass-border);
-            padding: 15px;
-            text-align: center;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: var(--neon-shadow-mixed);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5em; /* Tamanho ajustado para mobiles */
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            margin-top: 10px;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            color: var(--text-color);
-            text-decoration: none;
-            margin: 5px 10px;
-            padding: 10px 20px;
-            border-radius: 30px;
-            transition: all 0.3s ease;
-            position: relative;
+        /* Botões com gradiente vermelho neon */
+        .btn-neon {
+            background-image: linear-gradient(to right, var(--accent), var(--accent-secondary));
+            color: #000;
             font-weight: 500;
+            border-radius: 9999px;
+            padding: 0.75rem 1.5rem;
+            box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent-secondary);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        nav a:hover {
-            color: var(--accent-primary);
-            box-shadow: var(--neon-shadow-primary);
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        /* Main com Grid Profissional - Sidebar lateral otimizada */
-        main {
-            max-width: 1400px; /* Aumentado para melhor visualização em desktops */
-            margin: 100px auto 50px; /* Espaço para header fixo */
-            padding: 20px;
-            display: grid;
-            grid-template-columns: 250px 1fr; /* Sidebar fixa com largura profissional */
-            gap: 30px;
-        }
-
-        aside {
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            border: var(--glass-border);
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: var(--neon-shadow-mixed);
-            position: sticky;
-            top: 120px;
-            height: fit-content;
-            overflow-y: auto; /* Scroll se necessário */
-            max-height: calc(100vh - 140px); /* Limite para não overflow */
-        }
-
-        aside h3 {
-            margin-top: 0;
-            color: var(--text-color);
-            font-size: 1.2em;
-        }
-
-        aside ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        aside li a {
-            color: var(--text-color);
-            display: block;
-            padding: 10px;
-            transition: color 0.3s, transform 0.3s;
-            border-radius: 8px;
-        }
-
-        aside li a:hover {
-            color: var(--accent-secondary);
-            transform: translateX(5px);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        section {
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px); /* Efeito de vidro realçado, mas otimizado */
-            border: var(--glass-border);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: var(--neon-shadow-mixed);
-            margin-bottom: 30px;
-        }
-
-        section h2 {
-            border-bottom: 2px solid transparent;
-            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            font-size: 1.8em;
-        }
-
-        /* Botões Neon - Melhorados e profissionais */
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            color: var(--bg-color);
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 500;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: var(--neon-shadow-mixed);
-        }
-
-        .btn:hover {
+        .btn-neon:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 15px var(--accent-primary), 0 0 30px var(--accent-secondary);
+            box-shadow: 0 0 15px var(--accent), 0 0 30px var(--accent-secondary);
         }
 
-        /* Navegação Tutorial - Melhorada com Grid Profissional */
-        .tutorial-nav {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-top: 25px;
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
 
-        .tutorial-nav a {
-            padding: 10px 20px;
-            background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary));
-            color: var(--bg-color);
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 500;
-            transition: transform 0.3s;
-            box-shadow: var(--neon-shadow-secondary);
-            text-align: center;
+        ::-webkit-scrollbar-track {
+            background: var(--bg-amoled);
         }
 
-        .tutorial-nav a:hover {
-            transform: scale(1.05);
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 0, 0, 0.5);
+            border-radius: 9999px;
         }
 
-        /* Código Highlight - Otimizado */
-        pre {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 15px;
-            border-radius: 10px;
-            overflow-x: auto;
-            box-shadow: var(--neon-shadow-primary);
-            margin: 15px 0;
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 0, 0, 0.8);
         }
 
-        code {
-            color: var(--accent-primary);
-            font-family: 'Courier New', monospace;
+        /* Animação para troca de abas */
+        .tab-content {
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
-        /* Footer - Glassmorphic Otimizado */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            border-top: var(--glass-border);
-            margin-top: 40px;
-            box-shadow: var(--neon-shadow-mixed);
-            position: relative;
-            z-index: 10;
+        .tab-content:not(.active) {
+            opacity: 0;
+            transform: translateY(20px);
+            display: none;
         }
 
-        /* Responsividade Profissional - Layout fixo e fluido */
-        @media (max-width: 1024px) {
-            main {
-                grid-template-columns: 200px 1fr;
-            }
+        .tab-content.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        @media (max-width: 768px) {
-            main {
-                grid-template-columns: 1fr;
-                padding: 15px;
-            }
-
-            aside {
-                position: static;
-                margin-bottom: 25px;
-                max-height: none;
-            }
-
-            section {
-                padding: 25px;
-            }
-
-            .tutorial-nav {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-
-            .tutorial-nav a {
-                margin: 0;
-            }
-        }
-
-        @media (max-width: 480px) {
-            header h1 {
-                font-size: 2em;
-            }
-
-            nav a {
-                padding: 8px 15px;
-            }
-
-            .btn {
-                padding: 10px 20px;
+        /* Ajuste de performance para animações */
+        @media (prefers-reduced-motion: reduce) {
+            .tab-content, .btn-neon, .particle {
+                transition: none;
+                animation: none;
             }
         }
     </style>
 </head>
-<body>
+<body class="min-h-screen text-white">
     <div class="particles">
-        <div class="particle" style="width: 5px; height: 5px; left: 10%; top: 100%; animation-delay: 0s;"></div>
-        <div class="particle" style="width: 3px; height: 3px; left: 20%; top: 100%; animation-delay: 2s;"></div>
-        <div class="particle" style="width: 4px; height: 4px; left: 50%; top: 100%; animation-delay: 4s;"></div>
-        <div class="particle" style="width: 6px; height: 6px; left: 80%; top: 100%; animation-delay: 6s;"></div>
-        <div class="particle" style="width: 5px; height: 5px; left: 40%; top: 100%; animation-delay: 1s;"></div>
-        <div class="particle" style="width: 4px; height: 4px; left: 60%; top: 100%; animation-delay: 3s;"></div>
-        <div class="particle" style="width: 3px; height: 3px; left: 90%; top: 100%; animation-delay: 5s;"></div>
-        <div class="particle" style="width: 5px; height: 5px; left: 15%; top: 100%; animation-delay: 7s;"></div>
+        <div class="particle" style="width: 4px; height: 4px; left: 10%; top: 100%; animation-delay: 0s;"></div>
+        <div class="particle" style="width: 3px; height: 3px; left: 30%; top: 100%; animation-delay: 2s;"></div>
+        <div class="particle" style="width: 5px; height: 5px; left: 50%; top: 100%; animation-delay: 4s;"></div>
+        <div class="particle" style="width: 3px; height: 3px; left: 70%; top: 100%; animation-delay: 6s;"></div>
+        <div class="particle" style="width: 4px; height: 4px; left: 20%; top: 100%; animation-delay: 8s;"></div>
     </div>
 
-    <header>
-        <h1>Fluent v2 - Documentação Oficial</h1>
-        <nav>
-            <a href="#intro">Introdução</a>
-            <a href="#instalacao">Instalação</a>
-            <a href="#criando-janela">Criando uma Janela</a>
-            <a href="#adicionando-tabs">Adicionando Tabs</a>
-            <a href="#adicionando-secoes">Adicionando Seções e Elementos</a>
-            <a href="#temas">Temas</a>
-            <a href="#notificacoes">Notificações e Diálogos</a>
-            <a href="#features-avancadas">Features Avançadas</a>
-            <a href="#contato">Contato</a>
-        </nav>
+    <!-- Header -->
+    <header class="fixed top-0 w-full glass-panel z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6">
+            <h1 class="text-3xl sm:text-4xl font-bold text-gradient uppercase tracking-wide">
+                Fluent v2 - Documentação Oficial
+            </h1>
+            <nav class="mt-4 flex flex-wrap gap-3 justify-center">
+                <button data-tab="intro" class="tab-btn btn-neon text-sm">Introdução</button>
+                <button data-tab="instalacao" class="tab-btn btn-neon text-sm">Instalação</button>
+                <button data-tab="criando-janela" class="tab-btn btn-neon text-sm">Criando uma Janela</button>
+                <button data-tab="adicionando-tabs" class="tab-btn btn-neon text-sm">Adicionando Tabs</button>
+                <button data-tab="adicionando-secoes" class="tab-btn btn-neon text-sm">Seções e Elementos</button>
+                <button data-tab="temas" class="tab-btn btn-neon text-sm">Temas</button>
+                <button data-tab="notificacoes" class="tab-btn btn-neon text-sm">Notificações</button>
+                <button data-tab="features-avancadas" class="tab-btn btn-neon text-sm">Features Avançadas</button>
+                <button data-tab="contato" class="tab-btn btn-neon text-sm">Contato</button>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <aside>
-            <h3>Menu Rápido</h3>
-            <ul>
-                <li><a href="#intro">Introdução</a></li>
-                <li><a href="#instalacao">Instalação</a></li>
-                <li><a href="#criando-janela">Criando uma Janela</a></li>
-                <li><a href="#adicionando-tabs">Adicionando Tabs</a></li>
-                <li><a href="#adicionando-secoes">Adicionando Seções e Elementos</a></li>
-                <li><a href="#temas">Temas</a></li>
-                <li><a href="#notificacoes">Notificações e Diálogos</a></li>
-                <li><a href="#features-avancadas">Features Avançadas</a></li>
-                <li><a href="#contato">Contato</a></li>
+    <!-- Main -->
+    <main class="max-w-7xl mx-auto pt-24 pb-20 px-4 sm:px-6 flex gap-6">
+        <!-- Sidebar -->
+        <aside class="w-64 glass-panel rounded-xl p-4 sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto hidden md:block">
+            <h3 class="text-lg font-semibold mb-4">Menu Rápido</h3>
+            <ul class="space-y-2">
+                <li><button data-tab="intro" class="tab-btn w-full text-left px-3 py-2 rounded-md hover:bg-white/10 hover:text-yellow-300">Introdução</button></li>
+                <li><button data-tab="instalacao" class="tab-btn w-full text-left px-3 py-2 rounded-md hover:bg-white/10 hover:text-yellow-300">Instalação</button></li>
+                <li><button data-tab="criando-janela" class="tab-btn w-full text-left px-3 py-2 rounded-md hover:bg-white/10 hover:text-yellow-300">Criando uma Janela</button></li>
+                <li><button data-tab="adicionando-tabs" class="tab-btn w-full text-left px-3 py-2 rounded-md hover:bg-white/10 hover:text-yellow-300">Adicionando Tabs</button></li>
+                <li><button data-tab="adicionando-secoes" class="tab-btn w-full text-left px-3 py-2 rounded-md hover:bg-white/10 hover:text-yellow-300">Seções e Elementos</button></li>
+                <li><button data-tab="temas" class="tab-btn w-full text-left px-3 py-2 rounded-md hover:bg-white/10 hover:text-yellow-300">Temas</button></li>
+                <li><button data-tab="notificacoes" class="tab-btn w-full text-left px-3 py-2 rounded-md hover:bg-white/10 hover:text-yellow-300">Notificações</button></li>
+                <li><button data-tab="features-avancadas" class="tab-btn w-full text-left px-3 py-2 rounded-md hover:bg-white/10 hover:text-yellow-300">Features Avançadas</button></li>
+                <li><button data-tab="contato" class="tab-btn w-full text-left px-3 py-2 rounded-md hover:bg-white/10 hover:text-yellow-300">Contato</button></li>
             </ul>
         </aside>
 
-        <section id="intro">
-            <h2>Introdução</h2>
-            <p>Bem-vindo à documentação oficial do Fluent v2. Esta biblioteca oferece uma suíte de interface moderna para Roblox, com suporte a temas, animações e componentes profissionais. Aprenda passo a passo como usar cada parte da lib, como em um tutorial guiado.</p>
-            <p>Versão: 2.0.0. Modificado para tema AMOLED vermelho, scrollbars vermelhas e mais.</p>
-            <div class="tutorial-nav">
-                <div></div> <!-- Placeholder para grid -->
-                <a href="#instalacao">Próximo: Instalação &gt;</a>
-            </div>
-        </section>
+        <!-- Conteúdo -->
+        <div class="flex-1 space-y-8">
+            <section id="intro" class="tab-content glass-panel rounded-xl p-6 active">
+                <h2 class="text-2xl sm:text-3xl font-semibold text-gradient mb-4">Introdução</h2>
+                <p class="text-white/90">Bem-vindo à documentação oficial do Fluent v2. Esta biblioteca oferece uma suíte de interface moderna para Roblox, com suporte a temas, animações e componentes profissionais. Este tutorial guiará você passo a passo, como em um mangá, para dominar cada aspecto da biblioteca.</p>
+                <p class="text-white/90 mt-2">Versão: 2.0.0. Tema AMOLED vermelho com scrollbars neon e cards glassmorphic.</p>
+                <div class="tutorial-nav grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                    <div></div>
+                    <button data-tab="instalacao" class="tab-btn btn-neon">Próximo: Instalação &gt;</button>
+                </div>
+            </section>
 
-        <section id="instalacao">
-            <h2>Instalação</h2>
-            <p>Comece instalando o Fluent v2 em seu executor Roblox. Use o loadstring para carregar o script remotamente de forma segura.</p>
-            <pre><code>loadstring(game:HttpGet("https://sua-url-do-script-aqui.com/fluentv2.lua"))()</code></pre>
-            <p>Certifique-se de usar um executor confiável como Fluxus. Após carregar, a lib estará disponível como 'Fluent'.</p>
-            <div class="tutorial-nav">
-                <a href="#intro">&lt; Voltar: Introdução</a>
-                <a href="#criando-janela">Próximo: Criando uma Janela &gt;</a>
-            </div>
-        </section>
+            <section id="instalacao" class="tab-content glass-panel rounded-xl p-6">
+                <h2 class="text-2xl sm:text-3xl font-semibold text-gradient mb-4">Instalação</h2>
+                <p class="text-white/90">Instale o Fluent v2 em seu executor Roblox usando loadstring para carregar o script remotamente:</p>
+                <pre class="bg-black/80 rounded-lg p-4 mt-4 overflow-x-auto"><code class="text-red-400">loadstring(game:HttpGet("https://sua-url-do-script-aqui.com/fluentv2.lua"))()</code></pre>
+                <p class="text-white/90 mt-2">Use um executor confiável como Fluxus. Após carregar, a biblioteca estará disponível como 'Fluent'.</p>
+                <div class="tutorial-nav grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                    <button data-tab="intro" class="tab-btn btn-neon">&lt; Voltar: Introdução</button>
+                    <button data-tab="criando-janela" class="tab-btn btn-neon">Próximo: Criando uma Janela &gt;</button>
+                </div>
+            </section>
 
-        <section id="criando-janela">
-            <h2>Criando uma Janela</h2>
-            <p>Crie uma janela principal com opções personalizadas. Exemplo básico:</p>
-            <pre><code>local window = Fluent.CreateWindow({
+            <section id="criando-janela" class="tab-content glass-panel rounded-xl p-6">
+                <h2 class="text-2xl sm:text-3xl font-semibold text-gradient mb-4">Criando uma Janela</h2>
+                <p class="text-white/90">Crie uma janela principal com opções personalizadas:</p>
+                <pre class="bg-black/80 rounded-lg p-4 mt-4 overflow-x-auto"><code class="text-red-400">local window = Fluent.CreateWindow({
     Title = "Minha UI",
     Size = UDim2.fromOffset(580, 460),
     Acrylic = true,
     Theme = "Dark"
 })</code></pre>
-            <p>Isso inicia uma janela com tema Dark e efeitos acrylic. Use window para adicionar tabs e elementos.</p>
-            <div class="tutorial-nav">
-                <a href="#instalacao">&lt; Voltar: Instalação</a>
-                <a href="#adicionando-tabs">Próximo: Adicionando Tabs &gt;</a>
-            </div>
-        </section>
+                <p class="text-white/90 mt-2">Isso cria uma janela com tema Dark e efeitos acrylic. Use 'window' para adicionar tabs e elementos.</p>
+                <div class="tutorial-nav grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                    <button data-tab="instalacao" class="tab-btn btn-neon">&lt; Voltar: Instalação</button>
+                    <button data-tab="adicionando-tabs" class="tab-btn btn-neon">Próximo: Adicionando Tabs &gt;</button>
+                </div>
+            </section>
 
-        <section id="adicionando-tabs">
-            <h2>Adicionando Tabs</h2>
-            <p>Adicione tabs à janela para organizar conteúdo. Exemplo:</p>
-            <pre><code>local tab = window:AddTab({
+            <section id="adicionando-tabs" class="tab-content glass-panel rounded-xl p-6">
+                <h2 class="text-2xl sm:text-3xl font-semibold text-gradient mb-4">Adicionando Tabs</h2>
+                <p class="text-white/90">Adicione tabs à janela para organizar o conteúdo:</p>
+                <pre class="bg-black/80 rounded-lg p-4 mt-4 overflow-x-auto"><code class="text-red-400">local tab = window:AddTab({
     Title = "Configurações",
     Icon = "lucide-settings"
 })</code></pre>
-            <p>Selecione tabs com window:SelectTab(index). Tabs suportam ícones da lib integrada.</p>
-            <div class="tutorial-nav">
-                <a href="#criando-janela">&lt; Voltar: Criando uma Janela</a>
-                <a href="#adicionando-secoes">Próximo: Adicionando Seções e Elementos &gt;</a>
-            </div>
-        </section>
+                <p class="text-white/90 mt-2">Selecione tabs com window:SelectTab(index). Ícones são suportados pela biblioteca integrada.</p>
+                <div class="tutorial-nav grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                    <button data-tab="criando-janela" class="tab-btn btn-neon">&lt; Voltar: Criando uma Janela</button>
+                    <button data-tab="adicionando-secoes" class="tab-btn btn-neon">Próximo: Seções e Elementos &gt;</button>
+                </div>
+            </section>
 
-        <section id="adicionando-secoes">
-            <h2>Adicionando Seções e Elementos</h2>
-            <p>Crie seções em tabs e adicione elementos como buttons, toggles, etc. Exemplo:</p>
-            <pre><code>local section = tab:AddSection("Opções Gerais")
+            <section id="adicionando-secoes" class="tab-content glass-panel rounded-xl p-6">
+                <h2 class="text-2xl sm:text-3xl font-semibold text-gradient mb-4">Adicionando Seções e Elementos</h2>
+                <p class="text-white/90">Crie seções em tabs e adicione elementos como botões e toggles:</p>
+                <pre class="bg-black/80 rounded-lg p-4 mt-4 overflow-x-auto"><code class="text-red-400">local section = tab:AddSection("Opções Gerais")
 section.Container:Button({
     Title = "Ativar",
     Callback = function() print("Botão clicado") end
@@ -441,62 +234,89 @@ section.Container:Toggle("toggle1", {
     Default = false,
     Callback = function(value) print("Toggle:", value) end
 })</code></pre>
-            <p>Outros elementos: Slider, Dropdown, Colorpicker, Keybind, Input. Cada um retorna objetos para controle de valor.</p>
-            <div class="tutorial-nav">
-                <a href="#adicionando-tabs">&lt; Voltar: Adicionando Tabs</a>
-                <a href="#temas">Próximo: Temas &gt;</a>
-            </div>
-        </section>
+                <p class="text-white/90 mt-2">Outros elementos disponíveis: Slider, Dropdown, Colorpicker, Keybind, Input.</p>
+                <div class="tutorial-nav grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                    <button data-tab="adicionando-tabs" class="tab-btn btn-neon">&lt; Voltar: Adicionando Tabs</button>
+                    <button data-tab="temas" class="tab-btn btn-neon">Próximo: Temas &gt;</button>
+                </div>
+            </section>
 
-        <section id="temas">
-            <h2>Temas</h2>
-            <p>Altere o tema da UI dinamicamente. Temas disponíveis: Dark, Darker, Light, Aqua, Amethyst, Rose.</p>
-            <pre><code>Fluent:SetTheme("Dark")</code></pre>
-            <p>O tema Dark usa AMOLED black com acentos vermelhos. Personalize cores no objeto Fluent.Themes.</p>
-            <div class="tutorial-nav">
-                <a href="#adicionando-secoes">&lt; Voltar: Adicionando Seções e Elementos</a>
-                <a href="#notificacoes">Próximo: Notificações e Diálogos &gt;</a>
-            </div>
-        </section>
+            <section id="temas" class="tab-content glass-panel rounded-xl p-6">
+                <h2 class="text-2xl sm:text-3xl font-semibold text-gradient mb-4">Temas</h2>
+                <p class="text-white/90">Altere o tema da UI dinamicamente. Temas disponíveis: Dark, Darker, Light, Aqua, Amethyst, Rose.</p>
+                <pre class="bg-black/80 rounded-lg p-4 mt-4 overflow-x-auto"><code class="text-red-400">Fluent:SetTheme("Dark")</code></pre>
+                <p class="text-white/90 mt-2">O tema Dark usa AMOLED black com acentos vermelhos. Personalize cores em Fluent.Themes.</p>
+                <div class="tutorial-nav grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                    <button data-tab="adicionando-secoes" class="tab-btn btn-neon">&lt; Voltar: Seções e Elementos</button>
+                    <button data-tab="notificacoes" class="tab-btn btn-neon">Próximo: Notificações &gt;</button>
+                </div>
+            </section>
 
-        <section id="notificacoes">
-            <h2>Notificações e Diálogos</h2>
-            <p>Mostre notificações e diálogos interativos. Exemplo de notificação:</p>
-            <pre><code>Fluent:Notify({
+            <section id="notificacoes" class="tab-content glass-panel rounded-xl p-6">
+                <h2 class="text-2xl sm:text-3xl font-semibold text-gradient mb-4">Notificações e Diálogos</h2>
+                <p class="text-white/90">Mostre notificações e diálogos interativos:</p>
+                <pre class="bg-black/80 rounded-lg p-4 mt-4 overflow-x-auto"><code class="text-red-400">Fluent:Notify({
     Title = "Sucesso",
     Content = "UI Carregada",
     Duration = 5
 })</code></pre>
-            <p>Para diálogos: window:Dialog({Title = "Confirmação", Content = "Continuar?", Buttons = {{Title = "Sim", Callback = function() end}}})</p>
-            <div class="tutorial-nav">
-                <a href="#temas">&lt; Voltar: Temas</a>
-                <a href="#features-avancadas">Próximo: Features Avançadas &gt;</a>
-            </div>
-        </section>
+                <p class="text-white/90 mt-2">Para diálogos: window:Dialog({Title = "Confirmação", Content = "Continuar?", Buttons = {{Title = "Sim", Callback = function() end}}})</p>
+                <div class="tutorial-nav grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                    <button data-tab="temas" class="tab-btn btn-neon">&lt; Voltar: Temas</button>
+                    <button data-tab="features-avancadas" class="tab-btn btn-neon">Próximo: Features Avançadas &gt;</button>
+                </div>
+            </section>
 
-        <section id="features-avancadas">
-            <h2>Features Avançadas</h2>
-            <p>Explore features como minimizar (window:ToggleMinimize()), maximizar (window:Maximize(true)), e suporte a keybinds (Fluent.MinimizeKey = Enum.KeyCode.LeftControl).</p>
-            <p>Integre com SaveManager e InterfaceManager para salvar configs e personalizações.</p>
-            <div class="tutorial-nav">
-                <a href="#notificacoes">&lt; Voltar: Notificações e Diálogos</a>
-                <a href="#contato">Próximo: Contato &gt;</a>
-            </div>
-        </section>
+            <section id="features-avancadas" class="tab-content glass-panel rounded-xl p-6">
+                <h2 class="text-2xl sm:text-3xl font-semibold text-gradient mb-4">Features Avançadas</h2>
+                <p class="text-white/90">Explore recursos como minimizar (window:ToggleMinimize()), maximizar (window:Maximize(true)), e keybinds (Fluent.MinimizeKey = Enum.KeyCode.LeftControl).</p>
+                <p class="text-white/90 mt-2">Integre com SaveManager e InterfaceManager para salvar configurações.</p>
+                <div class="tutorial-nav grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                    <button data-tab="notificacoes" class="tab-btn btn-neon">&lt; Voltar: Notificações</button>
+                    <button data-tab="contato" class="tab-btn btn-neon">Próximo: Contato &gt;</button>
+                </div>
+            </section>
 
-        <section id="contato">
-            <h2>Contato</h2>
-            <p>Para suporte, visite o GitHub: <a href="https://github.com/dawid-scripts/Fluent" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary);">Repositório Oficial</a>.</p>
-            <p>Envie issues ou contribua com pull requests.</p>
-            <div class="tutorial-nav">
-                <a href="#features-avancadas">&lt; Voltar: Features Avançadas</a>
-                <div></div> <!-- Placeholder para grid -->
-            </div>
-        </section>
+            <section id="contato" class="tab-content glass-panel rounded-xl p-6">
+                <h2 class="text-2xl sm:text-3xl font-semibold text-gradient mb-4">Contato</h2>
+                <p class="text-white/90">Para suporte, visite o GitHub: <a href="https://github.com/dawid-scripts/Fluent" target="_blank" rel="noopener noreferrer" class="text-red-400 hover:text-red-300">Repositório Oficial</a>.</p>
+                <p class="text-white/90 mt-2">Envie issues ou contribua com pull requests.</p>
+                <div class="tutorial-nav grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                    <button data-tab="features-avancadas" class="tab-btn btn-neon">&lt; Voltar: Features Avançadas</button>
+                    <div></div>
+                </div>
+            </section>
+        </div>
     </main>
 
-    <footer>
+    <!-- Footer -->
+    <footer class="glass-panel py-4 text-center text-white/80">
         <p>&copy; 2025 Fluent v2. Todos os direitos reservados. Modificado por Grok.</p>
     </footer>
+
+    <script>
+        // JavaScript para gerenciar abas
+        const tabs = document.querySelectorAll('.tab-btn');
+        const contents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = tab.getAttribute('data-tab');
+                
+                // Remove classe active de todos os conteúdos
+                contents.forEach(content => content.classList.remove('active'));
+                
+                // Adiciona classe active ao conteúdo correspondente
+                const targetContent = document.getElementById(target);
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                    window.scrollTo({ top: targetContent.offsetTop - 100, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Inicializa com a aba Introdução ativa
+        document.getElementById('intro').classList.add('active');
+    </script>
 </body>
-                                                                 </html>
+                    </html>
