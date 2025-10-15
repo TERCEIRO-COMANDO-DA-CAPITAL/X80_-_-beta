@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fluent v2 - Documentação Oficial</title>
     <style>
-        /* CSS Avançado com Tema Dark AMOLED Neon, Glassmorphic e Acrylic - Inspirado e Melhorado do Fluxus */
+        /* CSS Avançado Profissional com Tema Dark AMOLED Neon Vermelho, Glassmorphic e Acrylic - 100% Melhorado e Variado */
         :root {
             --bg-color: #000000; /* AMOLED Black */
             --text-color: #ffffff; /* Branco puro */
-            --accent-blue: #00bfff; /* Neon Azul */
-            --accent-red: #ff1493; /* Neon Vermelho/Rosa */
-            --gradient-astral: linear-gradient(135deg, rgba(0, 191, 255, 0.2), rgba(255, 20, 147, 0.2)); /* Gradiente astral azul-vermelho */
+            --accent-primary: #ff0000; /* Neon Vermelho Primário */
+            --accent-secondary: #ff1493; /* Neon Vermelho Secundário (Rosa-Vermelho) */
+            --gradient-astral: linear-gradient(135deg, rgba(255, 0, 0, 0.2), rgba(255, 20, 147, 0.2)); /* Gradiente astral em tons vermelhos */
             --glass-bg: rgba(255, 255, 255, 0.05); /* Fundo glassmorphic/acrylic */
             --glass-border: 1px solid rgba(255, 255, 255, 0.1);
-            --neon-shadow-blue: 0 0 15px var(--accent-blue), 0 0 30px var(--accent-blue);
-            --neon-shadow-red: 0 0 15px var(--accent-red), 0 0 30px var(--accent-red);
-            --neon-shadow-mixed: 0 0 10px var(--accent-blue), 0 0 20px var(--accent-red);
+            --neon-shadow-primary: 0 0 15px var(--accent-primary), 0 0 30px var(--accent-primary);
+            --neon-shadow-secondary: 0 0 15px var(--accent-secondary), 0 0 30px var(--accent-secondary);
+            --neon-shadow-mixed: 0 0 10px var(--accent-primary), 0 0 20px var(--accent-secondary);
         }
 
         html {
@@ -52,7 +52,7 @@
             100% { opacity: 0.6; transform: scale(1.05); }
         }
 
-        /* Partículas neon para efeito astral - Mais partículas para beleza */
+        /* Partículas neon variadas para efeito astral - Mais partículas e variações para diversidade */
         .particles {
             position: absolute;
             top: 0;
@@ -66,16 +66,18 @@
 
         .particle {
             position: absolute;
-            background: var(--accent-blue);
+            background: var(--accent-primary);
             border-radius: 50%;
             animation: float 15s infinite linear;
-            box-shadow: var(--neon-shadow-blue);
+            box-shadow: var(--neon-shadow-primary);
+            opacity: 0.8;
         }
 
-        .particle:nth-child(even) { background: var(--accent-red); box-shadow: var(--neon-shadow-red); animation-duration: 20s; }
-        .particle:nth-child(3n) { animation-duration: 25s; }
-        .particle:nth-child(4n) { animation-duration: 18s; }
-        .particle:nth-child(5n) { background: var(--accent-blue); box-shadow: var(--neon-shadow-blue); animation-duration: 22s; }
+        .particle:nth-child(even) { background: var(--accent-secondary); box-shadow: var(--neon-shadow-secondary); animation-duration: 20s; opacity: 0.7; }
+        .particle:nth-child(3n) { animation-duration: 25s; width: 7px; height: 7px; }
+        .particle:nth-child(4n) { animation-duration: 18s; opacity: 0.9; }
+        .particle:nth-child(5n) { background: var(--accent-primary); box-shadow: var(--neon-shadow-primary); animation-duration: 22s; }
+        .particle:nth-child(6n) { animation: floatReverse 17s infinite linear; background: var(--accent-secondary); }
 
         @keyframes float {
             0% { transform: translateY(0) translateX(0); opacity: 0.5; }
@@ -83,15 +85,22 @@
             100% { transform: translateY(-100vh) translateX(10vw); opacity: 0.5; }
         }
 
-        /* Header Glassmorphic - Inspirado no Fluxus com mais sofisticação */
+        @keyframes floatReverse {
+            0% { transform: translateY(0) translateX(0); opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { transform: translateY(100vh) translateX(-10vw); opacity: 0.5; }
+        }
+
+        /* Header Glassmorphic - Profissional e fixo */
         header {
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border-bottom: var(--glass-border);
             padding: 20px;
             text-align: center;
-            position: sticky;
+            position: fixed;
             top: 0;
+            width: 100%;
             z-index: 1000;
             box-shadow: var(--neon-shadow-mixed);
             animation: fadeIn 1.5s ease-in-out;
@@ -102,7 +111,7 @@
             font-size: 3em;
             text-transform: uppercase;
             letter-spacing: 3px;
-            background: linear-gradient(to right, var(--accent-blue), var(--accent-red));
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -111,12 +120,13 @@
             display: flex;
             justify-content: center;
             margin-top: 15px;
+            flex-wrap: wrap; /* Responsivo para mobiles */
         }
 
         nav a {
             color: var(--text-color);
             text-decoration: none;
-            margin: 0 20px;
+            margin: 10px 20px;
             padding: 12px 25px;
             border-radius: 50px;
             transition: all 0.4s ease;
@@ -125,8 +135,8 @@
         }
 
         nav a:hover {
-            color: var(--accent-blue);
-            box-shadow: var(--neon-shadow-blue);
+            color: var(--accent-primary);
+            box-shadow: var(--neon-shadow-primary);
         }
 
         nav a::after {
@@ -136,7 +146,7 @@
             left: 50%;
             width: 0;
             height: 3px;
-            background: linear-gradient(to right, var(--accent-blue), var(--accent-red));
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
             transition: all 0.4s ease;
             transform: translateX(-50%);
         }
@@ -145,10 +155,10 @@
             width: 100%;
         }
 
-        /* Main com Grid - Layout inspirado no Fluxus, mas com mais espaço e fluidez */
+        /* Main com Grid - Layout profissional e fixo em mobiles */
         main {
             max-width: 1300px;
-            margin: 50px auto;
+            margin: 120px auto 50px; /* Espaço para header fixo */
             padding: 30px;
             display: grid;
             grid-template-columns: 1fr 4fr;
@@ -163,7 +173,7 @@
             border-radius: 20px;
             box-shadow: var(--neon-shadow-mixed);
             position: sticky;
-            top: 120px;
+            top: 140px;
             height: fit-content;
         }
 
@@ -180,23 +190,24 @@
         }
 
         aside li a:hover {
-            color: var(--accent-red);
+            color: var(--accent-secondary);
             transform: translateX(10px);
         }
 
         section {
             background: var(--glass-bg);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(25px); /* Efeito de vidro mais pronunciado */
             border: var(--glass-border);
             padding: 40px;
             border-radius: 20px;
             box-shadow: var(--neon-shadow-mixed);
             animation: slideIn 1s ease;
+            margin-bottom: 40px; /* Espaço para navegação */
         }
 
         section h2 {
             border-bottom: 3px solid transparent;
-            background: linear-gradient(to right, var(--accent-blue), var(--accent-red));
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             padding-bottom: 15px;
@@ -204,11 +215,11 @@
             font-size: 2em;
         }
 
-        /* Botões Neon - Mais vibrantes que no Fluxus */
+        /* Botões Neon - Variados e profissionais */
         .btn {
             display: inline-block;
             padding: 15px 30px;
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-red));
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
             color: var(--bg-color);
             text-decoration: none;
             border-radius: 50px;
@@ -219,20 +230,42 @@
 
         .btn:hover {
             transform: scale(1.1);
-            box-shadow: 0 0 20px var(--accent-blue), 0 0 40px var(--accent-red);
+            box-shadow: 0 0 20px var(--accent-primary), 0 0 40px var(--accent-secondary);
         }
 
-        /* Código Highlight - Com neon borders */
+        /* Navegação Tutorial - Como em sites de mangá */
+        .tutorial-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .tutorial-nav a {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary));
+            color: var(--bg-color);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: transform 0.3s;
+            box-shadow: var(--neon-shadow-secondary);
+        }
+
+        .tutorial-nav a:hover {
+            transform: scale(1.05);
+        }
+
+        /* Código Highlight - Com bordas neon variadas */
         pre {
             background: rgba(0, 0, 0, 0.8);
             padding: 20px;
             border-radius: 15px;
             overflow-x: auto;
-            box-shadow: var(--neon-shadow-blue);
+            box-shadow: var(--neon-shadow-primary);
         }
 
         code {
-            color: var(--accent-blue);
+            color: var(--accent-primary);
         }
 
         /* Footer - Glassmorphic */
@@ -244,16 +277,56 @@
             border-top: var(--glass-border);
             margin-top: 50px;
             box-shadow: var(--neon-shadow-mixed);
+            position: relative;
+            z-index: 10;
         }
 
-        /* Responsividade */
+        /* Responsividade Profissional - Layout fixo e otimizado para mobiles */
+        @media (max-width: 1024px) {
+            main {
+                grid-template-columns: 1fr 3fr;
+            }
+        }
+
         @media (max-width: 768px) {
             main {
                 grid-template-columns: 1fr;
+                padding: 20px;
             }
 
             aside {
                 position: static;
+                margin-bottom: 30px;
+            }
+
+            section {
+                padding: 30px;
+            }
+
+            .tutorial-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tutorial-nav a {
+                margin: 10px 0;
+                width: 80%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            nav a {
+                margin: 5px 10px;
+                padding: 10px 15px;
+            }
+
+            .btn {
+                padding: 12px 24px;
             }
         }
     </style>
@@ -268,6 +341,10 @@
         <div class="particle" style="width: 4px; height: 4px; left: 60%; top: 100%; animation-delay: 3s;"></div>
         <div class="particle" style="width: 3px; height: 3px; left: 90%; top: 100%; animation-delay: 5s;"></div>
         <div class="particle" style="width: 5px; height: 5px; left: 15%; top: 100%; animation-delay: 7s;"></div>
+        <div class="particle" style="width: 7px; height: 7px; left: 30%; top: 100%; animation-delay: 8s;"></div>
+        <div class="particle" style="width: 4px; height: 4px; left: 70%; top: 100%; animation-delay: 9s;"></div>
+        <div class="particle" style="width: 6px; height: 6px; left: 5%; top: 100%; animation-delay: 10s;"></div>
+        <div class="particle" style="width: 5px; height: 5px; left: 95%; top: 100%; animation-delay: 11s;"></div>
     </div>
 
     <header>
@@ -275,10 +352,12 @@
         <nav>
             <a href="#intro">Introdução</a>
             <a href="#instalacao">Instalação</a>
-            <a href="#uso">Uso</a>
-            <a href="#features">Features</a>
-            <a href="#themes">Temas</a>
-            <a href="#elements">Elementos</a>
+            <a href="#criando-janela">Criando uma Janela</a>
+            <a href="#adicionando-tabs">Adicionando Tabs</a>
+            <a href="#adicionando-secoes">Adicionando Seções e Elementos</a>
+            <a href="#temas">Temas</a>
+            <a href="#notificacoes">Notificações e Diálogos</a>
+            <a href="#features-avancadas">Features Avançadas</a>
             <a href="#contato">Contato</a>
         </nav>
     </header>
@@ -289,101 +368,129 @@
             <ul>
                 <li><a href="#intro">Introdução</a></li>
                 <li><a href="#instalacao">Instalação</a></li>
-                <li><a href="#uso">Uso</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#themes">Temas</a></li>
-                <li><a href="#elements">Elementos</a></li>
+                <li><a href="#criando-janela">Criando uma Janela</a></li>
+                <li><a href="#adicionando-tabs">Adicionando Tabs</a></li>
+                <li><a href="#adicionando-secoes">Adicionando Seções e Elementos</a></li>
+                <li><a href="#temas">Temas</a></li>
+                <li><a href="#notificacoes">Notificações e Diálogos</a></li>
+                <li><a href="#features-avancadas">Features Avançadas</a></li>
                 <li><a href="#contato">Contato</a></li>
             </ul>
         </aside>
 
         <section id="intro">
             <h2>Introdução</h2>
-            <p>Bem-vindo à documentação oficial do Fluent v2, uma suíte de interface avançada para Roblox projetada para desenvolvedores profissionais. O Fluent v2 oferece uma biblioteca de UI moderna com temas personalizáveis, suporte a acrylic e glassmorphism, animações suaves e componentes intuitivos.</p>
-            <p>Autor: dawid (modificado por Grok para tema AMOLED, acentos vermelhos, scrollbars vermelhas e botão de minimizar). Licença: MIT. GitHub: <a href="https://github.com/dawid-scripts/Fluent" style="color: var(--accent-blue);">https://github.com/dawid-scripts/Fluent</a>.</p>
-            <p>Versão: 2.0.0. Esta biblioteca é otimizada para performance e compatibilidade com as versões mais recentes do Roblox.</p>
-            <a href="#instalacao" class="btn">Comece Agora</a>
+            <p>Bem-vindo à documentação oficial do Fluent v2. Esta biblioteca oferece uma suíte de interface moderna para Roblox, com suporte a temas, animações e componentes profissionais. Aprenda passo a passo como usar cada parte da lib, como em um tutorial guiado.</p>
+            <p>Versão: 2.0.0. Modificado para tema AMOLED vermelho, scrollbars vermelhas e mais.</p>
+            <div class="tutorial-nav">
+                <a href="#instalacao">Próximo: Instalação &gt;</a>
+            </div>
         </section>
 
         <section id="instalacao">
             <h2>Instalação</h2>
-            <p>Para instalar o Fluent v2, você precisa de um executor de scripts compatível com Roblox, como Fluxus, Synapse ou similar. Siga os passos abaixo:</p>
-            <ol>
-                <li>Instale um executor de confiança no seu dispositivo.</li>
-                <li>Abra o Roblox e injete o executor.</li>
-                <li>Execute o loadstring fornecido abaixo, substituindo a URL pelo link do seu script hospedado.</li>
-            </ol>
+            <p>Comece instalando o Fluent v2 em seu executor Roblox. Use o loadstring para carregar o script remotamente de forma segura.</p>
             <pre><code>loadstring(game:HttpGet("https://sua-url-do-script-aqui.com/fluentv2.lua"))()</code></pre>
-            <p>Após a execução, a biblioteca será carregada automaticamente. Certifique-se de que a URL aponta para o arquivo .lua hospedado de forma segura (ex: GitHub Raw ou Pastebin).</p>
-            <a href="#" class="btn">Baixar Executor Recomendado</a>
+            <p>Certifique-se de usar um executor confiável como Fluxus. Após carregar, a lib estará disponível como 'Fluent'.</p>
+            <div class="tutorial-nav">
+                <a href="#intro">&lt; Voltar: Introdução</a>
+                <a href="#criando-janela">Próximo: Criando uma Janela &gt;</a>
+            </div>
         </section>
 
-        <section id="uso">
-            <h2>Uso</h2>
-            <p>O Fluent v2 é fácil de usar. Aqui vai um guia básico para criar uma janela e adicionar elementos:</p>
-            <ul>
-                <li><strong>Criar Janela:</strong> Use Fluent.CreateWindow({Title = "Minha UI", Size = UDim2.fromOffset(580, 460)})</li>
-                <li><strong>Adicionar Tab:</strong> window:AddTab({Title = "Configurações", Icon = "lucide-settings"})</li>
-                <li><strong>Adicionar Seção:</strong> tab:AddSection("Opções Gerais")</li>
-                <li><strong>Adicionar Elementos:</strong> section.Container:Button({Title = "Ativar", Callback = function() print("Ativado") end})</li>
-            </ul>
-            <p>Exemplo de loadstring para versão personalizada (substitua a URL):</p>
-            <pre><code>loadstring(game:HttpGet("https://sua-url-personalizada-aqui.com/fluentv2-custom.lua"))()</code></pre>
-            <p>Para notificações: Fluent:Notify({Title = "Sucesso", Content = "UI Carregada", Duration = 5})</p>
-            <p>Para diálogos: window:Dialog({Title = "Confirmação", Content = "Continuar?", Buttons = {{Title = "Sim", Callback = function() end}}})</p>
+        <section id="criando-janela">
+            <h2>Criando uma Janela</h2>
+            <p>Crie uma janela principal com opções personalizadas. Exemplo básico:</p>
+            <pre><code>local window = Fluent.CreateWindow({
+    Title = "Minha UI",
+    Size = UDim2.fromOffset(580, 460),
+    Acrylic = true,
+    Theme = "Dark"
+})</code></pre>
+            <p>Isso inicia uma janela com tema Dark e efeitos acrylic. Use window para adicionar tabs e elementos.</p>
+            <div class="tutorial-nav">
+                <a href="#instalacao">&lt; Voltar: Instalação</a>
+                <a href="#adicionando-tabs">Próximo: Adicionando Tabs &gt;</a>
+            </div>
         </section>
 
-        <section id="features">
-            <h2>Features</h2>
-            <p>O Fluent v2 inclui uma ampla gama de features avançadas:</p>
-            <ul>
-                <li><strong>Temas Personalizáveis:</strong> Dark, Darker, Light, Aqua, Amethyst, Rose - com acentos vermelhos no Dark.</li>
-                <li><strong>Acrylic e Glassmorphism:</strong> Suporte a efeitos de blur e transparência para um visual moderno.</li>
-                <li><strong>Animações Suaves:</strong> Usando Flipper para springs, lineares e instantâneas.</li>
-                <li><strong>Notificações:</strong> Sistema de notificações com duração e animações.</li>
-                <li><strong>Botão de Minimizar:</strong> Adicionado para alternar visibilidade da UI.</li>
-                <li><strong>Scrollbars Vermelhas:</strong> Customizadas para o tema AMOLED.</li>
-                <li><strong>Ícones Lucide:</strong> Biblioteca de ícones integrada.</li>
-                <li><strong>Componentes:</strong> Botões, Toggles, Sliders, Dropdowns, Colorpickers, Keybinds, Inputs, etc.</li>
-                <li><strong>Suporte a Keybinds:</strong> Para minimizar a UI (padrão: LeftControl).</li>
-            </ul>
-            <p>Para mais detalhes, consulte as seções de Temas e Elementos abaixo.</p>
+        <section id="adicionando-tabs">
+            <h2>Adicionando Tabs</h2>
+            <p>Adicione tabs à janela para organizar conteúdo. Exemplo:</p>
+            <pre><code>local tab = window:AddTab({
+    Title = "Configurações",
+    Icon = "lucide-settings"
+})</code></pre>
+            <p>Selecione tabs com window:SelectTab(index). Tabs suportam ícones da lib integrada.</p>
+            <div class="tutorial-nav">
+                <a href="#criando-janela">&lt; Voltar: Criando uma Janela</a>
+                <a href="#adicionando-secoes">Próximo: Adicionando Seções e Elementos &gt;</a>
+            </div>
         </section>
 
-        <section id="themes">
+        <section id="adicionando-secoes">
+            <h2>Adicionando Seções e Elementos</h2>
+            <p>Crie seções em tabs e adicione elementos como buttons, toggles, etc. Exemplo:</p>
+            <pre><code>local section = tab:AddSection("Opções Gerais")
+section.Container:Button({
+    Title = "Ativar",
+    Callback = function() print("Botão clicado") end
+})
+section.Container:Toggle("toggle1", {
+    Title = "Ativar Cheat",
+    Default = false,
+    Callback = function(value) print("Toggle:", value) end
+})</code></pre>
+            <p>Outros elementos: Slider, Dropdown, Colorpicker, Keybind, Input. Cada um retorna objetos para controle de valor.</p>
+            <div class="tutorial-nav">
+                <a href="#adicionando-tabs">&lt; Voltar: Adicionando Tabs</a>
+                <a href="#temas">Próximo: Temas &gt;</a>
+            </div>
+        </section>
+
+        <section id="temas">
             <h2>Temas</h2>
-            <p>O Fluent v2 suporta múltiplos temas. Use Fluent:SetTheme("NomeDoTema") para alternar.</p>
-            <ul>
-                <li><strong>Dark (Padrão):</strong> AMOLED black com acentos vermelhos claros.</li>
-                <li><strong>Darker:</strong> Tons mais escuros para ambientes low-light.</li>
-                <li><strong>Light:</strong> Tema claro para visibilidade diurna.</li>
-                <li><strong>Aqua:</strong> Tons de azul para um visual fresco.</li>
-                <li><strong>Amethyst:</strong> Tons roxos elegantes.</li>
-                <li><strong>Rose:</strong> Tons rosados vibrantes.</li>
-            </ul>
-            <p>Exemplo: Fluent:SetTheme("Dark")</p>
+            <p>Altere o tema da UI dinamicamente. Temas disponíveis: Dark, Darker, Light, Aqua, Amethyst, Rose.</p>
+            <pre><code>Fluent:SetTheme("Dark")</code></pre>
+            <p>O tema Dark usa AMOLED black com acentos vermelhos. Personalize cores no objeto Fluent.Themes.</p>
+            <div class="tutorial-nav">
+                <a href="#adicionando-secoes">&lt; Voltar: Adicionando Seções e Elementos</a>
+                <a href="#notificacoes">Próximo: Notificações e Diálogos &gt;</a>
+            </div>
         </section>
 
-        <section id="elements">
-            <h2>Elementos</h2>
-            <p>Adicione elementos às seções para criar interfaces ricas:</p>
-            <ul>
-                <li><strong>Button:</strong> Adiciona um botão clicável. Ex: section.Container:Button({Title = "Clique", Callback = function() end})</li>
-                <li><strong>Paragraph:</strong> Texto descritivo. Ex: section.Container:Paragraph({Content = "Descrição aqui"})</li>
-                <li><strong>Toggle:</strong> Alternador on/off. Ex: section.Container:Toggle("ID", {Title = "Ativar Cheat", Default = false, Callback = function(value) end})</li>
-                <li><strong>Slider:</strong> Controle deslizante. Ex: section.Container:Slider("ID", {Title = "Velocidade", Default = 50, Min = 0, Max = 100, Callback = function(value) end})</li>
-                <li><strong>Dropdown:</strong> Seleção de opções. Ex: section.Container:Dropdown("ID", {Title = "Escolha", Default = "Opção 1", Options = {"Opção 1", "Opção 2"}, Callback = function(value) end})</li>
-                <li><strong>Colorpicker:</strong> Seletor de cor. Ex: section.Container:Colorpicker("ID", {Title = "Cor", Default = Color3.fromRGB(255, 100, 100), Callback = function(color) end})</li>
-                <li><strong>Keybind:</strong> Atribuição de tecla. Ex: section.Container:Keybind("ID", {Title = "Bind", Default = Enum.KeyCode.E, Callback = function(key) end})</li>
-                <li><strong>Input:</strong> Campo de texto. Ex: section.Container:Input("ID", {Title = "Nome", Default = "", Callback = function(text) end})</li>
-            </ul>
-            <p>Todos os elementos suportam temas e transparências para um visual coeso.</p>
+        <section id="notificacoes">
+            <h2>Notificações e Diálogos</h2>
+            <p>Mostre notificações e diálogos interativos. Exemplo de notificação:</p>
+            <pre><code>Fluent:Notify({
+    Title = "Sucesso",
+    Content = "UI Carregada",
+    Duration = 5
+})</code></pre>
+            <p>Para diálogos: window:Dialog({Title = "Confirmação", Content = "Continuar?", Buttons = {{Title = "Sim", Callback = function() end}}})</p>
+            <div class="tutorial-nav">
+                <a href="#temas">&lt; Voltar: Temas</a>
+                <a href="#features-avancadas">Próximo: Features Avançadas &gt;</a>
+            </div>
+        </section>
+
+        <section id="features-avancadas">
+            <h2>Features Avançadas</h2>
+            <p>Explore features como minimizar (window:ToggleMinimize()), maximizar (window:Maximize(true)), e suporte a keybinds (Fluent.MinimizeKey = Enum.KeyCode.LeftControl).</p>
+            <p>Integre com SaveManager e InterfaceManager para salvar configs e personalizações.</p>
+            <div class="tutorial-nav">
+                <a href="#notificacoes">&lt; Voltar: Notificações e Diálogos</a>
+                <a href="#contato">Próximo: Contato &gt;</a>
+            </div>
         </section>
 
         <section id="contato">
             <h2>Contato</h2>
-            <p>Para suporte ou contribuições, visite o GitHub: <a href="https://github.com/dawid-scripts/Fluent" style="color: var(--accent-red);">Repositório Oficial</a>.</p>
-            <p>Questões? Envie uma issue no repositório ou contate o autor dawid.</p>
+            <p>Para suporte, visite o GitHub: <a href="https://github.com/dawid-scripts/Fluent" style="color: var(--accent-primary);">Repositório Oficial</a>.</p>
+            <p>Envie issues ou contribua com pull requests.</p>
+            <div class="tutorial-nav">
+                <a href="#features-avancadas">&lt; Voltar: Features Avançadas</a>
+            </div>
         </section>
     </main>
 
