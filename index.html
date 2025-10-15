@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação Exemplo</title>
+    <style>
+        /* CSS Avançado Inspirado em Designs Modernos (como sites com temas escuros, gradientes e animações) */
+        :root {
+            --primary-color: #0f0f0f; /* Fundo escuro */
+            --accent-color: #00ff88; /* Verde neon */
+            --text-color: #ffffff; /* Texto branco */
+            --secondary-color: #1a1a1a; /* Cinza escuro */
+            --gradient-bg: linear-gradient(135deg, #0f0f0f, #1f1f1f); /* Gradiente sutil */
+            --shadow-neon: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color); /* Efeito neon */
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif; /* Tipografia moderna */
+            background: var(--gradient-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden; /* Evita scroll horizontal */
+        }
+
+        /* Header com animação */
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px); /* Efeito de vidro fosco (CSS avançado) */
+            box-shadow: var(--shadow-neon);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(to right, var(--accent-color), #00ffcc); /* Gradiente no texto */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Navegação com flexbox */
+        nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+            box-shadow: var(--shadow-neon);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Conteúdo principal com grid */
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 3fr; /* Sidebar e conteúdo */
+            gap: 30px;
+        }
+
+        aside {
+            background: var(--secondary-color);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        aside ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        aside li a {
+            color: var(--text-color);
+            display: block;
+            padding: 10px;
+            transition: color 0.3s;
+        }
+
+        aside li a:hover {
+            color: var(--accent-color);
+        }
+
+        section {
+            background: var(--secondary-color);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        section h2 {
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Botões com hover avançado */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--accent-color), #00ffcc);
+            color: #000;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-neon);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            margin-top: 40px;
+        }
+
+        /* Responsividade com media queries */
+        @media (max-width: 768px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+
+            aside {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Documentação do Projeto</h1>
+        <nav>
+            <a href="#intro">Introdução</a>
+            <a href="#instalacao">Instalação</a>
+            <a href="#uso">Uso</a>
+            <a href="#contato">Contato</a>
+        </nav>
+    </header>
+
+    <main>
+        <aside>
+            <h3>Menu</h3>
+            <ul>
+                <li><a href="#intro">Introdução</a></li>
+                <li><a href="#instalacao">Instalação</a></li>
+                <li><a href="#uso">Uso</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </aside>
+
+        <section id="intro">
+            <h2>Introdução</h2>
+            <p>Aqui você pode colar o conteúdo da sua documentação. Este é um template com CSS avançado, incluindo gradientes, animações, sombras neon e layout responsivo usando grid e flexbox.</p>
+            <p>Exemplo: Este site foi inspirado em designs modernos como o do exemplo fornecido, com tema escuro e efeitos visuais atraentes.</p>
+        </section>
+
+        <section id="instalacao">
+            <h2>Instalação</h2>
+            <p>Coloque aqui as instruções de instalação.</p>
+            <a href="#" class="btn">Baixar Agora</a>
+        </section>
+
+        <section id="uso">
+            <h2>Uso</h2>
+            <p>Descreva como usar o projeto.</p>
+        </section>
+
+        <section id="contato">
+            <h2>Contato</h2>
+            <p>Informações de contato.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Seu Projeto. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Script carregado de path personalizado (exemplo: /load/meuhub.js) -->
+    <!-- Para rodar, crie um arquivo meuhub.js na pasta load do seu projeto Vercel -->
+    <script src="/load/meuhub.js"></script>
+</body>
+  </html>
